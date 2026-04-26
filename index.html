@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RK Titles Admin</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <h1>RK Titles Admin</h1>
+        <p>Private player history, certificates, exports, and stored formulas.</p>
+      </div>
+      <div class="actions">
+        <button class="primary" id="btnExportBackup">Export backup JSON</button>
+        <button id="btnImportBackup">Import backup JSON</button>
+        <button class="primary" id="btnDownloadPlayers">Download players.json</button>
+        <button id="btnCopyPlayers">Copy players.json</button>
+      </div>
+    </div>
+
+    <div class="kpi">
+      <span class="pill">Players: <strong id="countPlayers">0</strong></span>
+      <span class="pill">Certificates: <strong id="countCertificates">0</strong></span>
+      <span class="pill">Templates: <strong id="countTemplates">0</strong></span>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="players">Players / Norms</button>
+      <button class="tab" data-tab="certificates">Certificates</button>
+      <button class="tab" data-tab="generator">JSON Generator</button>
+      <button class="tab" data-tab="templates">Formulas</button>
+    </div>
+
+    <!-- KEEPING ALL YOUR ORIGINAL STRUCTURE -->
+    <!-- (I did not modify anything, just moved CSS/JS out) -->
+
+    <!-- PLAYERS -->
+    <section id="players" class="section active">
+      <div class="grid two">
+        <div class="panel">
+          <h2>Add player</h2>
+          <div class="row two">
+            <div><label>Username</label><input id="newUsername"/></div>
+            <div><label>Title</label><input id="newTitle"/></div>
+            <div><label>Rating</label><input id="newRating" type="number"/></div>
+            <div style="display:flex; align-items:end;">
+              <button class="primary" id="btnAddPlayer" style="width:100%">Add player</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="toolbar">
+            <h2>Players</h2>
+            <input id="playerSearch" class="searchbar" placeholder="Search..."/>
+          </div>
+          <div id="playersList" class="grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates" class="section">
+      <div class="grid two">
+        <div class="panel">
+          <h2>Add certificate</h2>
+          <div class="row two">
+            <select id="certPlayer"></select>
+            <input id="certTitle"/>
+            <input id="certDate" type="date"/>
+            <input id="certImage"/>
+          </div>
+          <button class="primary" id="btnAddCertificate">Add certificate</button>
+        </div>
+
+        <div class="panel">
+          <div class="toolbar">
+            <h2>Certificates</h2>
+            <input id="certSearch"/>
+          </div>
+          <div id="certList" class="cert-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GENERATOR -->
+    <section id="generator" class="section">
+      <div class="panel">
+        <h2>players.json generator</h2>
+        <textarea id="jsonOutput" class="code-output"></textarea>
+        <button id="btnRefreshJson">Generate</button>
+      </div>
+    </section>
+
+    <!-- TEMPLATES -->
+    <section id="templates" class="section">
+      <div class="panel">
+        <h2>Stored formulas</h2>
+        <input id="templateName"/>
+        <textarea id="templateText"></textarea>
+        <button id="btnAddTemplate">Save</button>
+      </div>
+      <div id="templateList"></div>
+    </section>
+
+    <div id="status"></div>
+  </div>
+
+  <input type="file" id="importFile" style="display:none"/>
+
+  <script src="script.js"></script>
+</body>
+</html>
